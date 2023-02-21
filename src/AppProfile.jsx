@@ -6,6 +6,9 @@ function AppProfile() {
     // const [Weather, setWeather] = useState([]);
     // **useState = 함수형 컴포넌트에서 상태값을 관리하는 것
 
+    // const [city, setCity] = useState('');
+    // const [weather, setWeather] = useState('');
+
     return (
         <>
             <header>

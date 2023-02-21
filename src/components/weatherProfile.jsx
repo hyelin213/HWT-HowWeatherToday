@@ -1,4 +1,6 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 
 export default function WeatherProfile(props) {
     // {image, name, title}로 받아온다면 props라고 하지 않고
@@ -8,9 +10,29 @@ export default function WeatherProfile(props) {
     // (if)_분기문 사용 시, 파라미터 내에 isNew가 있다면.
     // ex) {isNew && <span className='new'>New</span>}
 
+    const api = '919907ac8d8febcd146eacdbfef2f528';
+    const city = 1835327;
+    const lat = 35.8;
+    const lon = 128.55;
+    
+    useEffect(() => {
+        // Promise.all([
+        //     axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api}`)
+        // ], [
+        //     axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${city}&appid=${api}`)
+        // ])
+        axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${city}&appid=${api}`)
+        .then(res => {
+            // console.log(res.data.list);
+            let conver = (res.data.list[3].main.temp)-273.15;
+            console.log(Math.round(conver));
+        })
+    }, []);
+
     return (
         <>
-            <h1>test</h1>
         </>
     );
+    
+    
 }
