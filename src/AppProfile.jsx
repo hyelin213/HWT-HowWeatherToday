@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import WeatherProfile from './components/weatherProfile';
+import { useState } from 'react';
 
 function AppProfile() {
     // const [Weather, setWeather] = useState([]);
@@ -8,12 +9,24 @@ function AppProfile() {
 
     // const [city, setCity] = useState('');
     // const [weather, setWeather] = useState('');
+    
 
     return (
         <>
             <header>
                 {/* ios처럼 꾸미자 로고, 날짜+시간, 메뉴버튼 */}
             </header>
+
+            <div className='container'>
+                <form>
+                    <input
+                        type="text"
+                        className='city-title'
+                        autoFocus
+                    />
+                </form>
+            </div>
+            
             <WeatherProfile />
             {/* 
                 사용하는 곳(AppProfile)에서 컴퍼넌트에 속성으로 키 명시
