@@ -15,8 +15,9 @@ export default function WeatherProfile() {
     // 3. swiper 기능으로 도시 날씨, 전국 날씨, 추천 옷차림을 볼 수 있다.
 
     const [city, setCity] = useState('');
-    const [coords, saveCoords] = useState();
-    const [weather, setWeather] = useState(null);
+    const [currentWeather, setCurrentWeather] = useState(null);
+    const [hourlyWeather, setHourlyWeather] = useState(null);
+    const [weeklyWeather, setWeeklyWeather] = useState(null);
 
     const apiKey = '919907ac8d8febcd146eacdbfef2f528';
 
@@ -24,13 +25,8 @@ export default function WeatherProfile() {
     function handleGeoSucc(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        const coordsObj = {
-            latitude,
-            longitude
-        };
-
-        saveCoords(coordsObj);
-        getWeatherlocation(latitude, longitude);
+        getCurrentWeather(latitude, longitude);
+        getHourlyWeather(latitude, longitude);
     }
 
     // 에러 코드
@@ -42,8 +38,8 @@ export default function WeatherProfile() {
         navigator.geolocation.getCurrentPosition(handleGeoSucc, handleGeoErr);
     }
 
-    // 현재 위치의 날씨를 출력하는 함수
-    function getWeatherlocation(lat, lon) {
+    // 현재 날씨 출력
+    function getCurrentWeather(lat, lon) {
         let api = `http://api.openweathermap.org/data/2.5/weather?&lang=kr&units=metric&appid=${apiKey}`;
 
         if (city) {
@@ -56,7 +52,35 @@ export default function WeatherProfile() {
         axios.get(api)
             .then(res => {
                 const data = res.data;
-                setWeather(data);
+                setCurrentWeather(data);
+                console.log(data);
+            })
+    }
+
+    // 해당 날짜의 시간 별 날씨와 주간 날씨 출력
+    function getHourlyWeather(lat, lon) {
+        let api = `http://api.openweathermap.org/data/2.5/forecast?&lang=kr&units=metric&appid=${apiKey}`;
+
+        if (city) {
+            api += `&q=${city}`;
+        }
+        else {
+            api += `&lat=${lat}&lon=${lon}`;
+        }
+
+        axios.get(api)
+            .then(res => {
+                const data = res.data.list;
+                console.log(data)
+
+                // 오늘 날짜 시간 별 추출
+                const filterHourly = data.filter(data => {
+                    const date = new Date(data.dt_txt);
+                    return date.getDate() === new Date().getDate();
+                })
+                setHourlyWeather(filterHourly);
+
+                setWeeklyWeather(data);
             })
     }
 
@@ -64,36 +88,97 @@ export default function WeatherProfile() {
         requestCoords();
     }, [city]);
 
-    return (
-        <>
-            <div className='select-city'>
-                <input
-                    type="text"
-                    className='city-title'
-                    placeholder='지역을 입력하세요😊'
-                    onChange={e => 
-                        setTimeout(() => {
-                            setCity(e.target.value)
-                        }, 1500)
-                    }
-                />
-                <button
-                    type='submit'
-                    onClick={e => setCity(e.target.value)}
-                >
-                    search
-                </button>
-            </div>
-            <div className='weather-container'>
-                {weather && (
+    function handleChange(e) {
+        setCity(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setCurrentWeather(getCurrentWeather);
+        setHourlyWeather(getHourlyWeather);
+    }
+
+    function renderWeatherData() {
+        if (!currentWeather) {
+            return null;
+        }
+
+        return (
+            <div className='current-weather'>
+                {currentWeather && (
                     <>
-                        <h2>{weather.name}</h2>
-                        <p>{weather.weather[weather.weather.length - 1].main}</p>
-                        <p>{Math.round(weather.main.temp)}℃</p>
-                        <p>체감온도 {Math.round(weather.main.feels_like)}℃</p>
+                        <h2>{currentWeather.name}</h2>
+                        <p>{currentWeather.weather[currentWeather.weather.length - 1].main}</p>
+                        <p>{Math.round(currentWeather.main.temp)}℃</p>
+                        <p>체감온도 {Math.round(currentWeather.main.feels_like)}℃</p>
                     </>
                 )}
             </div>
+        )
+    }
+    // 시간 별 날씨 함수
+    function renderHourlyWeatherData() {
+        if (!hourlyWeather) {
+            return null;
+        }
+
+        return hourlyWeather.map(data => (
+            <div
+                key={data.dt}
+                className='hourly-weather'
+            >
+                <p>날짜: {data.dt_txt}</p>
+                <p>{Math.round(data.main.temp)}°C</p>
+                <p>{data.weather[data.weather.length - 1].main}</p>
+            </div>
+        ))
+    }
+
+    // 주간 날씨 함수
+    function renderWeeklyWeatherData() {
+        if (!weeklyWeather) {
+            return null;
+        }
+        return weeklyWeather.map(data => (
+            <div
+                key={data.dt}
+                className='weekly-weather'
+            >
+                <p>날짜: {data.dt_txt}</p>
+                <p>{Math.round(data.main.temp)}°C</p>
+                <p>{data.weather[data.weather.length - 1].main}</p>
+            </div>
+        ))
+
+    }
+
+    return (
+        <>
+            <div className='select-city'>
+                <form>
+                    <input
+                        type="text"
+                        className='city-title'
+                        placeholder='지역을 입력하세요😊'
+                        onChange={e =>
+                            setTimeout(() => {
+                                handleChange(e)
+                            }, 1500)
+                        }
+                    />
+                    <button
+                        type='button'
+                        onClick={handleSubmit}
+                    >
+                        search
+                    </button>
+                </form>
+            </div>
+            {renderWeatherData()}
+            <p>======================== 시간 날씨 ========================</p>
+            {renderHourlyWeatherData()}
+            <p>======================== 주간 날씨 ========================</p>
+            {renderWeeklyWeatherData()}
         </>
     );
 }

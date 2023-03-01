@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import WeatherProfile from './components/weatherProfile';
 import SwiperCont from './components/swiperCont';
+import Test from './components/test'
 
 function AppProfile() {
     // const [Weather, setWeather] = useState([]);
