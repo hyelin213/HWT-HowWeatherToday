@@ -1,7 +1,6 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import SearchBox from './searchBox';
 
 export default function WeatherProfile(props) {
     // {image, name, title}로 받아온다면 props라고 하지 않고
@@ -11,20 +10,17 @@ export default function WeatherProfile(props) {
     // (if)_분기문 사용 시, 파라미터 내에 isNew가 있다면.
     // ex) {isNew && <span className='new'>New</span>}
 
-    // 1. input value 값에 따라 바뀌는 기준은 citycode
-    // 2. 처음 접속했을 때와 input의 value값이 없거나 현재 위치와 동일할 때는
-    //    latitude, longitude의 기준으로 출력한다.
+    // 1. city를 선택할 때마다 해당 도시의 날씨 정보가 출력된다.
+    // 2. 처음 접속했을 때는 latitude, longitude의 기준으로 출력한다.
+    // 3. swiper 기능으로 도시 날씨, 전국 날씨, 추천 옷차림을 볼 수있다.
 
     const [coords, saveCoords] = useState();
-    const [temp, setTemp] = useState();
-    const [name, setName] = useState('');
     const [weather, setWeather] = useState(null);
-    const [feelLike, setFeelLike] = useState('');
-    const cityName = e => {
-        setName(e.target.value)
-    }
+    const [city, setCity] = useState('');
+
     const apiKey = '919907ac8d8febcd146eacdbfef2f528';
 
+    // 현재 위치 추출
     function handleGeoSucc(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
@@ -37,28 +33,7 @@ export default function WeatherProfile(props) {
         getWeatherlocation(latitude, longitude);
     }
 
-    function getWeatherlocation(lat, lon) {
-        let api = `http://api.openweathermap.org/data/2.5/weather?&lat=${lat}&lon=${lon}&lang=kr&units=metric&appid=${apiKey}`;
-        
-        axios.get(api)
-        .then(res => {
-            const data = res.data;
-            console.log(data)
-            const temp = Math.round(data.main.temp);
-            const weathers = data.weather[data.weather.length - 1];
-
-            setTemp(temp);
-            setWeather(weathers.main);
-            setName(data.name);
-            setFeelLike(Math.round(data.main.feels_like));
-
-            console.log(Math.round(data.main.temp)); // 현재 온도
-            console.log(Math.round(data.main.feels_like)); // 체감 온도
-            console.log(weathers.main) // 상태
-            console.log(data.name); // 지역
-        })
-    }
-
+    // 에러 코드
     function handleGeoErr(err) {
         console.log('geo err!' + err);
     }
@@ -66,18 +41,59 @@ export default function WeatherProfile(props) {
     function requestCoords() {
         navigator.geolocation.getCurrentPosition(handleGeoSucc, handleGeoErr);
     }
-    
+
+    // 현재 위치의 날씨를 출력하는 함수
+    function getWeatherlocation(lat, lon) {
+        let api = `http://api.openweathermap.org/data/2.5/weather?&lang=kr&units=metric&appid=${apiKey}`;
+
+        if (city) {
+            api += `&q=${city}`;
+        }
+        else {
+            api += `&lat=${lat}&lon=${lon}`;
+        }
+
+        axios.get(api)
+            .then(res => {
+                const data = res.data;
+                setWeather(data);
+            })
+    }
+
     useEffect(() => {
         requestCoords();
-    }, []);
+    }, [city]);
 
     return (
         <>
+            <div className='select-city'>
+                <input
+                    type="text"
+                    className='city-title'
+                    placeholder='지역을 입력하세요😊'
+                    onBlur={e => setCity(e.target.value)}
+                />
+                <button
+                    type='submit'
+                    onClick={e => setCity(e.target.value)}
+                >
+                    search
+                </button>
+
+                <ul>
+                    <li>현재 위치</li>
+                </ul>
+
+            </div>
             <div className='weather-container'>
-                <h2>{name}</h2>
-                <p>{weather}</p>
-                <p>{temp}℃</p>
-                <p>체감온도 {feelLike}℃</p>
+                {weather && (
+                    <>
+                        <h2>{weather.name}</h2>
+                        <p>{weather.weather[weather.weather.length - 1].main}</p>
+                        <p>{Math.round(weather.main.temp)}℃</p>
+                        <p>체감온도 {Math.round(weather.main.feels_like)}℃</p>
+                    </>
+                )}
             </div>
         </>
     );

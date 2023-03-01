@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import WeatherProfile from './components/weatherProfile';
-import { useState } from 'react';
+import WeatherProfile2 from './components/weatherProfile2';
 
 function AppProfile() {
     // const [Weather, setWeather] = useState([]);
@@ -18,16 +18,9 @@ function AppProfile() {
             </header>
 
             <div className='container'>
-                <form>
-                    <input
-                        type="text"
-                        className='city-title'
-                        autoFocus
-                    />
-                </form>
+                <WeatherProfile />
             </div>
             
-            <WeatherProfile />
             {/* 
                 사용하는 곳(AppProfile)에서 컴퍼넌트에 속성으로 키 명시
                 WeatherProfile은 틀만 제공하는 것으로 이해하자
