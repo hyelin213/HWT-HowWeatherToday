@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import WeatherProfile from './components/weatherProfile';
-import WeatherProfile2 from './components/weatherProfile2';
+import SwiperCont from './components/swiperCont';
 
 function AppProfile() {
     // const [Weather, setWeather] = useState([]);
@@ -9,7 +9,6 @@ function AppProfile() {
 
     // const [city, setCity] = useState('');
     // const [weather, setWeather] = useState('');
-    
 
     return (
         <>
@@ -18,7 +17,7 @@ function AppProfile() {
             </header>
 
             <div className='container'>
-                <WeatherProfile />
+                <SwiperCont />
             </div>
             
             {/* 

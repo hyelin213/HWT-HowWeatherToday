@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function WeatherProfile(props) {
+export default function WeatherProfile() {
     // {image, name, title}로 받아온다면 props라고 하지 않고
     // 바로 키 값을 넣어 조금 더 깔끔하게 작성할 수 있다.
     // 헷갈릴 땐 외부로 전달하는 과정이라고 다시 한 번 이해하자
@@ -12,11 +12,11 @@ export default function WeatherProfile(props) {
 
     // 1. city를 선택할 때마다 해당 도시의 날씨 정보가 출력된다.
     // 2. 처음 접속했을 때는 latitude, longitude의 기준으로 출력한다.
-    // 3. swiper 기능으로 도시 날씨, 전국 날씨, 추천 옷차림을 볼 수있다.
+    // 3. swiper 기능으로 도시 날씨, 전국 날씨, 추천 옷차림을 볼 수 있다.
 
+    const [city, setCity] = useState('');
     const [coords, saveCoords] = useState();
     const [weather, setWeather] = useState(null);
-    const [city, setCity] = useState('');
 
     const apiKey = '919907ac8d8febcd146eacdbfef2f528';
 
@@ -71,7 +71,11 @@ export default function WeatherProfile(props) {
                     type="text"
                     className='city-title'
                     placeholder='지역을 입력하세요😊'
-                    onBlur={e => setCity(e.target.value)}
+                    onChange={e => 
+                        setTimeout(() => {
+                            setCity(e.target.value)
+                        }, 1500)
+                    }
                 />
                 <button
                     type='submit'
@@ -79,11 +83,6 @@ export default function WeatherProfile(props) {
                 >
                     search
                 </button>
-
-                <ul>
-                    <li>현재 위치</li>
-                </ul>
-
             </div>
             <div className='weather-container'>
                 {weather && (
