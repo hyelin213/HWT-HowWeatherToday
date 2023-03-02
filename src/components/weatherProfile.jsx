@@ -27,6 +27,7 @@ export default function WeatherProfile() {
         const longitude = position.coords.longitude;
         getCurrentWeather(latitude, longitude);
         getHourlyWeather(latitude, longitude);
+        getWeeklyWeather(latitude, longitude);
     }
 
     // 에러 코드
@@ -79,14 +80,35 @@ export default function WeatherProfile() {
                     return date.getDate() === new Date().getDate();
                 })
                 setHourlyWeather(filterHourly);
+            })
+    }
 
-                setWeeklyWeather(data);
+    function getWeeklyWeather(lat, lon) {
+        let api = `http://api.openweathermap.org/data/2.5/forecast?&lang=kr&units=metric&appid=${apiKey}`;
+
+        if (city) {
+            api += `&q=${city}`;
+        }
+        else {
+            api += `&lat=${lat}&lon=${lon}`;
+        }
+
+        axios.get(api)
+            .then(res => {
+                const data = res.data.list;
+
+                // 오늘 날짜 시간 별 추출
+                const filterWeekly = data.filter(data => {
+                    const date = new Date(data.dt_txt);
+                    return (data.dt_txt.includes('15:00:00') && date.getDate() !== new Date().getDate())
+                })
+                setWeeklyWeather(filterWeekly);
             })
     }
 
     useEffect(() => {
         requestCoords();
-    }, [city]);
+    }, []);
 
     function handleChange(e) {
         setCity(e.target.value);
@@ -96,8 +118,10 @@ export default function WeatherProfile() {
         e.preventDefault();
         setCurrentWeather(getCurrentWeather);
         setHourlyWeather(getHourlyWeather);
+        setWeeklyWeather(getWeeklyWeather);
     }
 
+    // 현재 날씨 함수
     function renderWeatherData() {
         if (!currentWeather) {
             return null;
@@ -116,6 +140,7 @@ export default function WeatherProfile() {
             </div>
         )
     }
+
     // 시간 별 날씨 함수
     function renderHourlyWeatherData() {
         if (!hourlyWeather) {
@@ -127,7 +152,7 @@ export default function WeatherProfile() {
                 key={data.dt}
                 className='hourly-weather'
             >
-                <p>날짜: {data.dt_txt}</p>
+                <p>시간: {data.dt_txt.split(' ')[1]}</p>
                 <p>{Math.round(data.main.temp)}°C</p>
                 <p>{data.weather[data.weather.length - 1].main}</p>
             </div>
@@ -139,12 +164,13 @@ export default function WeatherProfile() {
         if (!weeklyWeather) {
             return null;
         }
+
         return weeklyWeather.map(data => (
             <div
                 key={data.dt}
                 className='weekly-weather'
             >
-                <p>날짜: {data.dt_txt}</p>
+                <p>날짜: {data.dt_txt.split(' ')[0]}</p>
                 <p>{Math.round(data.main.temp)}°C</p>
                 <p>{data.weather[data.weather.length - 1].main}</p>
             </div>
