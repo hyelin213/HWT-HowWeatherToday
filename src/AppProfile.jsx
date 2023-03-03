@@ -1,6 +1,7 @@
 import './App.css';
 import SwiperCont from './components/swiperCont';
 import moment from 'moment';
+import App from './components/testApp';
 
 function AppProfile() {
     // **useState = 함수형 컴포넌트에서 상태값을 관리하는 것
@@ -19,7 +20,7 @@ function AppProfile() {
                     <SwiperCont />
                 </div>
             </div>
-
+            <App />
             {/* 
                 사용하는 곳(AppProfile)에서 컴퍼넌트에 속성으로 키 명시
                 WeatherProfile은 틀만 제공하는 것으로 이해하자

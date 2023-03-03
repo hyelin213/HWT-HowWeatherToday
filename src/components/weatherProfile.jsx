@@ -163,7 +163,7 @@ export default function WeatherProfile() {
                         <p>습도 {currentWeather.main.humidity}%</p>
                         <p>일출 {sunrise}</p>
                         <p>일몰 {sunset}</p>
-                        <ClothesRecomm temp={currentTemp}/>
+                        <ClothesRecomm temp={currentTemp} />
                     </>
                 )}
             </div>
@@ -187,7 +187,6 @@ export default function WeatherProfile() {
             </div>
         ))
     }
-
 
     // 주간 날씨 함수
     function renderWeeklyWeatherData() {
