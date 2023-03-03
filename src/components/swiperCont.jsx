@@ -6,19 +6,18 @@ import NationalWeather from './nationalWeather';
 
 export default function SwiperCont() {
     return (
-        <Swiper
-            spaceBetween={50}
-            slidesPerView={1}
-        >
-            <SwiperSlide>
-                <WeatherProfile />
-            </SwiperSlide>
-            <SwiperSlide>
-                <NationalWeather />
-            </SwiperSlide>
-            <SwiperSlide>
-                Slide 3
-            </SwiperSlide>
-        </Swiper>
+        <>
+            <Swiper
+                spaceBetween={50}
+                slidesPerView={1}
+            >
+                <SwiperSlide>
+                    <WeatherProfile />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <NationalWeather />
+                </SwiperSlide>
+            </Swiper>
+        </>
     );
 }

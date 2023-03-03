@@ -3,12 +3,6 @@ import axios from 'axios';
 
 const apiKey = '919907ac8d8febcd146eacdbfef2f528';
 const cityIds = '1835848,1838524,1835329,1843564,1841808,1835235,1833747,1841597,1843137,1845106,1845105,1845789,1841881,1838754,1839726';
-// let city = [
-//     'incheon', 'chuncheon', 'gangneung-si', 'seoul', 'suwon',
-//     'cheongju', 'andong', 'jeonju', 'daejeon', 'daegu',
-//     'ulsan', 'gwangju', 'changwon', 'mokpo', 'yeosu',
-//     'busan', 'jeju'
-// ]
 
 export default function NationalWeather() {
 

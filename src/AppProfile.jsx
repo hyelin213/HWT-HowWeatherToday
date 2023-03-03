@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import WeatherProfile from './components/weatherProfile';
 import SwiperCont from './components/swiperCont';
+import moment from 'moment';
 
 function AppProfile() {
-    // const [Weather, setWeather] = useState([]);
     // **useState = 함수형 컴포넌트에서 상태값을 관리하는 것
 
-    // const [city, setCity] = useState('');
-    // const [weather, setWeather] = useState('');
-
+    const nowTime = moment().format('YYYY/MM/DD HH:mm');
+    
     return (
         <>
-            <header>
-                {/* ios처럼 꾸미자 로고, 날짜+시간, 메뉴버튼 */}
-            </header>
-
             <div className='container'>
-                <SwiperCont />
+                <header>
+                    <div className='now-time'>
+                        {nowTime}
+                    </div>
+                </header>
+                <div className='slide-container'>
+                    <SwiperCont />
+                </div>
             </div>
-            
+
             {/* 
                 사용하는 곳(AppProfile)에서 컴퍼넌트에 속성으로 키 명시
                 WeatherProfile은 틀만 제공하는 것으로 이해하자
