@@ -2,6 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import WeatherProfile from './weatherProfile';
+import NationalWeather from './nationalWeather';
 
 export default function SwiperCont() {
     return (
@@ -13,7 +14,7 @@ export default function SwiperCont() {
                 <WeatherProfile />
             </SwiperSlide>
             <SwiperSlide>
-                Slide 2
+                <NationalWeather />
             </SwiperSlide>
             <SwiperSlide>
                 Slide 3

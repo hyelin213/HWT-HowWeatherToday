@@ -131,14 +131,18 @@ export default function WeatherProfile() {
             <div className='current-weather'>
                 {currentWeather && (
                     <>
-                        <h2>{currentWeather.name}</h2>
+                        <h2>{currentWeather.name}, {currentWeather.sys.country}</h2>
                         <p>{currentWeather.weather[currentWeather.weather.length - 1].main}</p>
                         <p>{Math.round(currentWeather.main.temp)}℃</p>
                         <p>체감온도 {Math.round(currentWeather.main.feels_like)}℃</p>
+                        <p>최저기온 {Math.round(currentWeather.main.temp_min)}℃</p>
+                        <p>최고기온 {Math.round(currentWeather.main.temp_max)}℃</p>
+                        <p>풍속 {currentWeather.wind.speed}m/s</p>
+                        <p>습도 {currentWeather.main.humidity}%</p>
                     </>
                 )}
             </div>
-        )
+        );
     }
 
     // 시간 별 날씨 함수
@@ -186,11 +190,7 @@ export default function WeatherProfile() {
                         type="text"
                         className='city-title'
                         placeholder='지역을 입력하세요😊'
-                        onChange={e =>
-                            setTimeout(() => {
-                                handleChange(e)
-                            }, 1500)
-                        }
+                        onChange={handleChange}
                     />
                     <button
                         type='button'
