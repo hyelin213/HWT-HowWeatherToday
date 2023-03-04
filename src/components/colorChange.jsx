@@ -1,5 +1,9 @@
+import React from 'react';
+
 export default function ColorChange({temp}) {
-    let backgroundColor = "#3C3C3C"; // 초기 배경 색상
+
+  let backgroundColor = "#3C3C3C"; // 초기 배경 색상
+
   if (temp >= 20) {
     backgroundColor = "red";
   } else if (temp >= 10) {
@@ -9,6 +13,6 @@ export default function ColorChange({temp}) {
   }
 
   return (
-    <div className="bg-color" style={{backgroundColor}}></div>
+      <div className="bg-color" style={{ backgroundColor }}></div>
   )
 }

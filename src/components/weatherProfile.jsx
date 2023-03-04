@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import ClothesRecomm from './clothesRecomm';
 import ColorChange from './colorChange';
 
@@ -17,7 +18,7 @@ export default function WeatherProfile() {
     // 3. swiper 기능으로 도시 날씨, 전국 날씨, 추천 옷차림을 볼 수 있다.
 
     const [city, setCity] = useState('');
-    
+
     const [currentWeather, setCurrentWeather] = useState(null);
     const [hourlyWeather, setHourlyWeather] = useState(null);
     const [weeklyWeather, setWeeklyWeather] = useState(null);
@@ -207,30 +208,50 @@ export default function WeatherProfile() {
 
     }
 
+    // 현재 시간 실시간 반영
+    let timer = null;
+    const [nowTime, setNowTime] = useState(moment());
+
+    useEffect(() => {
+        timer = setInterval(() => {
+            setNowTime(moment());
+        }, 1000)
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
+
     return (
         <>
-            <div className='select-city'>
-                <form>
-                    <input
-                        type="text"
-                        className='city-title'
-                        placeholder='지역을 입력하세요😊'
-                        onChange={handleChange}
-                    />
-                    <button
-                        type='button'
-                        onClick={handleSubmit}
-                    >
-                        Search
-                    </button>
-                </form>
+            <div className='first-weather-page'>
+                <div className='select-city'>
+                    <form>
+                        <input
+                            type="text"
+                            className='city-title'
+                            placeholder='지역을 입력하세요😊'
+                            onChange={handleChange}
+                        />
+                        <button
+                            type='button'
+                            onClick={handleSubmit}
+                        >
+                            Search
+                        </button>
+                    </form>
+                </div>
+                <div className='today-now'>
+                    <div>{nowTime.format('dddd')}</div>
+                    <div>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
+                </div>
+                {renderWeatherData()}
+                <p>======================== 시간 날씨 ========================</p>
+                {renderHourlyWeatherData()}
+                <p>======================== 주간 날씨 ========================</p>
+                {renderWeeklyWeatherData()}
             </div>
-            {renderWeatherData()}
-            <p>======================== 시간 날씨 ========================</p>
-            {renderHourlyWeatherData()}
-            <p>======================== 주간 날씨 ========================</p>
-            {renderWeeklyWeatherData()}
-            <ColorChange temp={currentTemp}/>
+            <ColorChange temp={currentTemp}></ColorChange>
         </>
     );
 }
