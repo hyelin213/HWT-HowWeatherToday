@@ -123,7 +123,7 @@ export default function WeatherProfile() {
                 // 오늘 날짜 시간 별 추출
                 const filterWeekly = data.filter(data => {
                     const date = new Date(data.dt_txt);
-                    return (data.dt_txt.includes('15:00:00') && date.getDate() !== new Date().getDate())
+                    return (data.dt_txt.includes('06:00:00') && date.getDate() !== new Date().getDate())
                 })
                 setWeeklyWeather(filterWeekly);
             })
@@ -208,7 +208,7 @@ export default function WeatherProfile() {
 
     }
 
-    // 현재 시간 실시간 반영
+    // 현재 시간 실시간 반영 (moment.js)
     let timer = null;
     const [nowTime, setNowTime] = useState(moment());
 
