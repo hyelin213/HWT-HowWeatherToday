@@ -1,15 +1,11 @@
 import './App.css';
 import SwiperCont from './components/swiperCont';
-import ColorChange from './components/colorChange';
-import { useState } from 'react';
 
 function AppProfile() {
     // **useState = 함수형 컴포넌트에서 상태값을 관리하는 것
 
     return (
         <>
-            <header>
-            </header>
             <div className='container'>
                 <div className='slide-container'>
                     <SwiperCont />

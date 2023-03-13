@@ -9,7 +9,7 @@ export default function ColorChange({temp}) {
   } else if (temp >= 10) {
     backgroundColor = "orange";
   } else {
-    backgroundColor = "blue";
+    backgroundColor = "skyblue";
   }
 
   return (

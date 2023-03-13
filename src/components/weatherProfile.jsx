@@ -4,6 +4,8 @@ import axios from 'axios';
 import moment from 'moment';
 import ClothesRecomm from './clothesRecomm';
 import ColorChange from './colorChange';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function WeatherProfile() {
     // {image, name, title}로 받아온다면 props라고 하지 않고
@@ -224,26 +226,27 @@ export default function WeatherProfile() {
 
     return (
         <>
-            <div className='first-weather-page'>
+            <div className='weather-page'>
                 <div className='select-city'>
                     <form>
                         <input
                             type="text"
                             className='city-title'
-                            placeholder='지역을 입력하세요😊'
                             onChange={handleChange}
                         />
                         <button
                             type='button'
+                            className='search-btn'
                             onClick={handleSubmit}
                         >
-                            Search
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </form>
                 </div>
                 <div className='today-now'>
-                    <div>{nowTime.format('dddd')}</div>
-                    <div>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
+                    <div className='today-day'>{nowTime.format('dddd')}</div>
+                    <span></span>
+                    <div className='today-date'>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
                 </div>
                 {renderWeatherData()}
                 <p>======================== 시간 날씨 ========================</p>

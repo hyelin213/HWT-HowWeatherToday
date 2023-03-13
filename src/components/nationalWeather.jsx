@@ -19,16 +19,18 @@ export default function NationalWeather() {
     }, []);
 
     return (
-        <div>
-            <h2>전국 날씨</h2>
-            {weatherData.map(data => (
-                <div key={data.id}>
-                    <h3>{data.name}</h3>
-                    <p>{data.weather[data.weather.length - 1].description}</p>
-                    <p>{Math.round(data.main.temp)}℃</p>
-                </div>
-            ))}
-        </div>
+        <>
+            <div className='weather-page'>
+                <h2>전국 날씨</h2>
+                {weatherData.map(data => (
+                    <div key={data.id}>
+                        <h3>{data.name}</h3>
+                        <p>{data.weather[data.weather.length - 1].description}</p>
+                        <p>{Math.round(data.main.temp)}℃</p>
+                    </div>
+                ))}
+            </div>
+        </>
     )
 
 

@@ -1,12 +1,71 @@
-.container {
-  width: 100%;
-  height: 100%;
-  position: relative;
+@charset 'utf-8';
+
+*:focus {
+  outline: none;
 }
 
-.first-weather-page {
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.container .weather-page {
+  width: 480px;
+  min-width: 320px;
+  height: 100%;
+  padding: 50px 0;
+  margin: 0 auto;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+
   position: relative;
   z-index: 1;
+}
+
+.container .weather-page .select-city {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container .weather-page .city-title {
+  border: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #000;
+  width: 250px;
+  height: 50px;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  
+}
+.container .weather-page .search-btn {
+  width: 60px;
+  height: 50px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container .weather-page .today-now {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30px;
+}
+
+.container .weather-page .today-now .today-day {
+  font-size: 1.2rem;
+}
+.container .weather-page .today-now .today-date {
+  font-size: 1.2rem;
+}
+
+.container .weather-page .today-now span {
+  width: 20px;
+  height: 1px;
+  margin: 7px 10px 0;
+  background-color: #000;
 }
 
 .bg-color {
@@ -16,14 +75,4 @@
   top: 0;
   left: 0;
   z-index: 0;
-}
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
