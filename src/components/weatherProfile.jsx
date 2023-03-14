@@ -227,7 +227,7 @@ export default function WeatherProfile() {
     return (
         <>
             <div className='weather-page'>
-                <div className='select-city'>
+                <div className='search-city'>
                     <form>
                         <input
                             type="text"

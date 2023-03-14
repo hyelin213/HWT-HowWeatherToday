@@ -24,7 +24,7 @@
   z-index: 1;
 }
 
-.container .weather-page .select-city {
+.container .weather-page .search-city {
   display: flex;
   justify-content: flex-end;
 }
