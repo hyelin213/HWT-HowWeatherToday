@@ -156,12 +156,21 @@ export default function WeatherProfile() {
             <div className='current-weather'>
                 {currentWeather && (
                     <>
-                        <h2>{currentWeather.name}, {currentWeather.sys.country}</h2>
-                        <p>{currentWeather.weather[currentWeather.weather.length - 1].main}</p>
-                        <p>{currentTemp}℃</p>
-                        <p>체감온도 {Math.round(currentWeather.main.feels_like)}℃</p>
-                        <p>최저기온 {Math.round(currentWeather.main.temp_min)}℃</p>
-                        <p>최고기온 {Math.round(currentWeather.main.temp_max)}℃</p>
+                        <div className="key-info">
+                            <div className="key-info-top">
+                                <h2 className='city-name'>{currentWeather.name}, {currentWeather.sys.country}</h2>
+                                <p className='current-temp'>{currentTemp}℃</p>
+                                <p className='current-feel-like'>which you feel {Math.round(currentWeather.main.feels_like)}℃</p>
+                            </div>
+                            <div className="key-info-bottom">
+                                <p className='current-main'>It's {currentWeather.weather[currentWeather.weather.length - 1].main}.</p>
+                                <div className="key-info-bottom-right">
+                                    <p>최저기온 {Math.round(currentWeather.main.temp_min)}℃</p>
+                                    <span></span>
+                                    <p>최고기온 {Math.round(currentWeather.main.temp_max)}℃</p>
+                                </div>
+                            </div>
+                        </div>
                         <p>풍속 {currentWeather.wind.speed}m/s</p>
                         <p>습도 {currentWeather.main.humidity}%</p>
                         <p>일출 {sunrise}</p>
@@ -227,32 +236,34 @@ export default function WeatherProfile() {
     return (
         <>
             <div className='weather-page'>
-                <div className='search-city'>
-                    <form>
-                        <input
-                            type="text"
-                            className='city-title'
-                            onChange={handleChange}
-                        />
-                        <button
-                            type='button'
-                            className='search-btn'
-                            onClick={handleSubmit}
-                        >
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </form>
+                <div className="weather-page-container">
+                    <div className='search-city'>
+                        <form>
+                            <input
+                                type="text"
+                                className='city-title'
+                                onChange={handleChange}
+                            />
+                            <button
+                                type='button'
+                                className='search-btn'
+                                onClick={handleSubmit}
+                            >
+                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            </button>
+                        </form>
+                    </div>
+                    <div className='today-now'>
+                        <div className='today-day'>{nowTime.format('dddd')}</div>
+                        <span></span>
+                        <div className='today-date'>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
+                    </div>
+                    {renderWeatherData()}
+                    <p>======================== 시간 날씨 ========================</p>
+                    {renderHourlyWeatherData()}
+                    <p>======================== 주간 날씨 ========================</p>
+                    {renderWeeklyWeatherData()}
                 </div>
-                <div className='today-now'>
-                    <div className='today-day'>{nowTime.format('dddd')}</div>
-                    <span></span>
-                    <div className='today-date'>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
-                </div>
-                {renderWeatherData()}
-                <p>======================== 시간 날씨 ========================</p>
-                {renderHourlyWeatherData()}
-                <p>======================== 주간 날씨 ========================</p>
-                {renderWeeklyWeatherData()}
             </div>
             <ColorChange temp={currentTemp}></ColorChange>
         </>
