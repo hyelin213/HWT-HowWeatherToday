@@ -20,7 +20,7 @@ export default function NationalWeather() {
 
     return (
         <>
-            <div className='weather-page'>
+            <div className='national-weather'>
                 <h2>전국 날씨</h2>
                 {weatherData.map(data => (
                     <div key={data.id}>

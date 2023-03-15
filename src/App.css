@@ -2,6 +2,28 @@
 @import url(./AppFont.css);
 @import url(./Common.css);
 
+/* 검색 결과가 없을 때 */
+.nothing-info {
+  width: 100%;
+  height: 76vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nothing-info h2 {
+  font-size: 5rem;
+}
+.nothing-info p {
+  margin-top: 2rem;
+}
+.nothing-info span {
+  font-size: 13px;
+  opacity: 0.5;
+}
+
+/* 검색 결과가 있을 때 */
 .container {
   width: 100%;
   height: 100vh;
@@ -14,7 +36,6 @@
   width: 480px;
   min-width: 320px;
   height: 100%;
-  padding: 50px 0;
   margin: 0 auto;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
@@ -23,56 +44,113 @@
   z-index: 1;
 }
 
+/* header */
+.container .weather-page .header {
+  width: 100%;
+  height: 45px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #eee;
+}
+.container .weather-page .header h1 {
+  font-size: 20px;
+}
+.container .weather-page .header p {
+  font-size: 12px;
+}
+.container .weather-page .header a {
+  color: #eee;
+}
+.container .weather-page .header a:active {
+  color: #aaa;
+}
+
 .container .weather-page .weather-page-container {
   padding: 0 30px;
 }
 
+/* .container .weather-page .weather-page-first {
+  height: 150vh;
+  overflow: scroll;
+} */
+
 .container .weather-page .search-city {
+  width: 100%;
+  height: 70px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  border-bottom: 2px solid #000;
 }
 
 .container .weather-page .city-title {
-  border: 0;
-  background-color: transparent;
-  border-bottom: 2px solid #000;
-  width: 250px;
-  height: 50px;
-  font-size: 1.5rem;
+  width: 380px;
+  height: 100%;
   padding: 0 1rem;
+  font-size: 1.5rem;
+  border: 0;
+  letter-spacing: -0.5px;
+  background-color: transparent;
+  font-family: 'GmarketSansMedium';
 }
 
 .container .weather-page .search-btn {
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  margin-left: 20px;
 }
 
 .container .weather-page .today-now {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  height: 30px;
-}
-
-.container .weather-page .today-now .today-day {
-  font-size: 1.2rem;
-}
-.container .weather-page .today-now .today-date {
-  font-size: 1.2rem;
+  margin-top: 30px;
+  font-size: 18px;
 }
 
 .container .weather-page .today-now span {
   width: 20px;
-  height: 1px;
-  margin: 7px 10px 0;
+  height: 1.5px;
+  margin: 0 10px;
   background-color: #000;
+}
+
+.weather-page .current-weather .key-info .key-info-top .city-name {
+  margin: 15px 0;
 }
 
 .weather-page .current-weather .key-info .key-info-top .current-temp {
   display: inline-block;
   font-size: 9rem;
   letter-spacing: -5px;
+  font-weight: bold;
+}
+
+.weather-page .current-weather .key-info .key-info-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 1.5rem 0;
+}
+
+.weather-page .current-weather .key-info .key-info-bottom .current-main {
+  font-size: 3rem;
+  line-height: 3rem;
+  letter-spacing: -1.5px;
+}
+
+.weather-page .current-weather .key-info .key-info-bottom .key-info-bottom-right {
+  display: flex;
+  align-items: center;
+}
+.weather-page .current-weather .key-info .key-info-bottom .key-info-bottom-right span {
+  width: 15px;
+  height: 2px;
+  margin: 0 5px;
+  background-color: #000;
 }
 
 .bg-color {

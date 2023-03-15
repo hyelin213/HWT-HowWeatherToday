@@ -10,7 +10,7 @@ export default function ClothesRecomm({temp}) {
     } else if(temp <= 19) {
         message = '가디건, 자켓, 야상, 맨투맨, 가벼운 니트';
     } else if(temp <= 25) {
-        message = '얇은 가디건, 긴팔티, 면바지, 면바지, 반바지, 청바지';
+        message = '얇은 가디건, 긴팔티, 면바지, 반바지, 청바지';
     } else {
         message = '반팔티, 반바지, 원피스, 린넨 소재 의류';
     }

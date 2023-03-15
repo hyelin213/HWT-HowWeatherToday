@@ -2,8 +2,13 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+
+import NationalWeather from './nationalWeather';
 import ClothesRecomm from './clothesRecomm';
 import ColorChange from './colorChange';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -149,7 +154,13 @@ export default function WeatherProfile() {
     // 현재 날씨 함수
     function renderWeatherData() {
         if (!currentWeather) {
-            return null;
+            return (
+                <div className='nothing-info'>
+                    <h2>Sorry,</h2>
+                    <p>해당 도시에 대한 정보가 없습니다.</p>
+                    <span>There is no information about the city.</span>
+                </div>
+            )
         }
 
         return (
@@ -165,9 +176,9 @@ export default function WeatherProfile() {
                             <div className="key-info-bottom">
                                 <p className='current-main'>It's {currentWeather.weather[currentWeather.weather.length - 1].main}.</p>
                                 <div className="key-info-bottom-right">
-                                    <p>최저기온 {Math.round(currentWeather.main.temp_min)}℃</p>
+                                    <p>{Math.round(currentWeather.main.temp_min)}℃</p>
                                     <span></span>
-                                    <p>최고기온 {Math.round(currentWeather.main.temp_max)}℃</p>
+                                    <p>{Math.round(currentWeather.main.temp_max)}℃</p>
                                 </div>
                             </div>
                         </div>
@@ -236,6 +247,10 @@ export default function WeatherProfile() {
     return (
         <>
             <div className='weather-page'>
+                <div className='header'>
+                    <h1>HWT</h1>
+                    <p>HYLN, <a href='https://github.com/hyelin213/weatherWeb.git'>Github</a></p>
+                </div>
                 <div className="weather-page-container">
                     <div className='search-city'>
                         <form>
@@ -258,11 +273,19 @@ export default function WeatherProfile() {
                         <span></span>
                         <div className='today-date'>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
                     </div>
-                    {renderWeatherData()}
-                    <p>======================== 시간 날씨 ========================</p>
-                    {renderHourlyWeatherData()}
-                    <p>======================== 주간 날씨 ========================</p>
-                    {renderWeeklyWeatherData()}
+
+                    <Swiper spaceBetween={50} slidesPerView={1}>
+                        <SwiperSlide className='weather-page-first'>
+                            {renderWeatherData()}
+                            <p>======================== 시간 날씨 ========================</p>
+                            {renderHourlyWeatherData()}
+                            <p>======================== 주간 날씨 ========================</p>
+                            {renderWeeklyWeatherData()}
+                        </SwiperSlide>
+                        <SwiperSlide className='weather-page-second'>
+                            <NationalWeather />
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
             </div>
             <ColorChange temp={currentTemp}></ColorChange>
