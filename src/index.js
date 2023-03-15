@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import AppProfile from './AppProfile';
+import WeatherProfile from './components/weatherProfile';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AppProfile />
+    <WeatherProfile />
 );
 
 // If you want to start measuring performance in your app, pass a function

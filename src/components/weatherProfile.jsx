@@ -146,6 +146,11 @@ export default function WeatherProfile() {
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        if(!city) {
+            return alert('지역을 입력해 주세요.');
+        }
+
         setCurrentWeather(getCurrentWeather);
         setHourlyWeather(getHourlyWeather);
         setWeeklyWeather(getWeeklyWeather);
@@ -245,7 +250,7 @@ export default function WeatherProfile() {
     }, []);
 
     return (
-        <>
+        <div className='container'>
             <div className='weather-page'>
                 <div className='header'>
                     <h1>HWT</h1>
@@ -289,6 +294,8 @@ export default function WeatherProfile() {
                 </div>
             </div>
             <ColorChange temp={currentTemp}></ColorChange>
-        </>
+        </div>
     );
+
+    
 }
