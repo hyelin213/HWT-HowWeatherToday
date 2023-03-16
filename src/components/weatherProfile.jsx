@@ -7,6 +7,7 @@ import NationalWeather from './nationalWeather';
 import ClothesRecomm from './clothesRecomm';
 import ColorChange from './colorChange';
 
+import '../App.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -254,24 +255,22 @@ export default function WeatherProfile() {
             <div className='weather-page'>
                 <div className='header'>
                     <h1>HWT</h1>
-                    <p>HYLN, <a href='https://github.com/hyelin213/weatherWeb.git'>Github</a></p>
+                    <p>HYLN, <a href='https://github.com/hyelin213/weatherWeb.git' target={'_blank'}>Github</a></p>
                 </div>
                 <div className="weather-page-container">
                     <div className='search-city'>
-                        <form>
-                            <input
-                                type="text"
-                                className='city-title'
-                                onChange={handleChange}
-                            />
-                            <button
-                                type='button'
-                                className='search-btn'
-                                onClick={handleSubmit}
-                            >
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            </button>
-                        </form>
+                        <input
+                            type="text"
+                            className='city-title'
+                            onChange={handleChange}
+                        />
+                        <button
+                            type='button'
+                            className='search-btn'
+                            onClick={handleSubmit}
+                        >
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
                     </div>
                     <div className='today-now'>
                         <div className='today-day'>{nowTime.format('dddd')}</div>
@@ -279,7 +278,7 @@ export default function WeatherProfile() {
                         <div className='today-date'>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
                     </div>
 
-                    <Swiper spaceBetween={50} slidesPerView={1}>
+                    <Swiper spaceBetween={50} slidesPerView={1} className='weather-slide'>
                         <SwiperSlide className='weather-page-first'>
                             {renderWeatherData()}
                             <p>======================== 시간 날씨 ========================</p>

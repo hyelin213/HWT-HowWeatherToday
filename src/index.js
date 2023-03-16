@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import AppProfile from './AppProfile';
 import WeatherProfile from './components/weatherProfile';
 import reportWebVitals from './reportWebVitals';
 
