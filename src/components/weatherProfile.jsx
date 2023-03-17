@@ -188,10 +188,10 @@ export default function WeatherProfile() {
                                 </div>
                             </div>
                         </div>
-                        <p>풍속 {currentWeather.wind.speed}m/s</p>
-                        <p>습도 {currentWeather.main.humidity}%</p>
-                        <p>일출 {sunrise}</p>
-                        <p>일몰 {sunset}</p>
+                        <div className="sub-info">
+                            <p>Wind {currentWeather.wind.speed}m/s</p>
+                            <p>Humidity {currentWeather.main.humidity}%</p>
+                        </div>
                         <ClothesRecomm temp={currentTemp} />
                     </>
                 )}
@@ -208,11 +208,11 @@ export default function WeatherProfile() {
         return hourlyWeather.map(data => (
             <div
                 key={data.dt}
-                className='hourly-weather'
+                className='hourly-class'
             >
-                <p>시간: {data.dt_txt.split(' ')[1]}</p>
-                <p>{Math.round(data.main.temp)}°C</p>
-                <p>{data.weather[data.weather.length - 1].main}</p>
+                <p className='time'>{data.dt_txt.split(' ')[1].slice(0, 2)}시</p>
+                <p className='temp'>{Math.round(data.main.temp)}°C</p>
+                <p className='day-main'>{data.weather[data.weather.length - 1].main}</p>
             </div>
         ))
     }
@@ -226,11 +226,11 @@ export default function WeatherProfile() {
         return weeklyWeather.map(data => (
             <div
                 key={data.dt}
-                className='weekly-weather'
+                className='weekly-class'
             >
-                <p>날짜: {data.dt_txt.split(' ')[0]}</p>
-                <p>{Math.round(data.main.temp)}°C</p>
-                <p>{data.weather[data.weather.length - 1].main}</p>
+                <p className='date'>{data.dt_txt.split(' ')[0].slice(5).replace('-', '/')}</p>
+                <p className='temp'>{Math.round(data.main.temp)}°C</p>
+                <p className='day-main'>{data.weather[data.weather.length - 1].main}</p>
             </div>
         ))
 
@@ -281,10 +281,14 @@ export default function WeatherProfile() {
                     <Swiper spaceBetween={50} slidesPerView={1} className='weather-slide'>
                         <SwiperSlide className='weather-page-first'>
                             {renderWeatherData()}
-                            <p>======================== 시간 날씨 ========================</p>
-                            {renderHourlyWeatherData()}
-                            <p>======================== 주간 날씨 ========================</p>
-                            {renderWeeklyWeatherData()}
+                            <div className="hourly-weather">
+                                <h4>Hourly</h4>
+                                {renderHourlyWeatherData()}
+                            </div>
+                            <div className="weekly-weather">
+                                <h4>Weekly</h4>
+                                {renderWeeklyWeatherData()}
+                            </div>
                         </SwiperSlide>
                         <SwiperSlide className='weather-page-second'>
                             <NationalWeather />

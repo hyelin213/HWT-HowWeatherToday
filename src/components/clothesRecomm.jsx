@@ -17,7 +17,8 @@ export default function ClothesRecomm({temp}) {
 
     return (
         <div className='clothes-recomm'>
-            <p>{message}</p>
+            <h4>Clothes recommendation.</h4>
+            <p>: {message}</p>
         </div>
     )
 }
