@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const apiKey = '919907ac8d8febcd146eacdbfef2f528';
-const cityIds = '1835848,1838524,1835329,1843564,1841808,1835235,1833747,1841597,1843137,1845106,1845105,1845789,1841881,1838754,1839726';
+const cityIds = '1841610,1876101,1845105,1845106,1845789,1841597,1845788,1902028,1846265';
 
 export default function NationalWeather() {
 
@@ -15,20 +15,28 @@ export default function NationalWeather() {
             .then(res => {
                 const data = res.data.list;
                 setWeatherData(data);
+                console.log(data)
             })
     }, []);
 
     return (
         <>
             <div className='national-weather'>
-                <h2>전국 날씨</h2>
-                {weatherData.map(data => (
-                    <div key={data.id}>
-                        <h3>{data.name}</h3>
-                        <p>{data.weather[data.weather.length - 1].description}</p>
-                        <p>{Math.round(data.main.temp)}℃</p>
-                    </div>
-                ))}
+                <div className="title">
+                    <h2>National weather</h2>
+                    <p>Republic of Korea</p>
+                </div>
+                <div className="national-weather-container">
+                    {weatherData.map(data => (
+                        <div key={data.id} className='national-class'>
+                            <h3>{data.name}</h3>
+                            <div className="regional-details">
+                                <p className='day-main'>{data.weather[data.weather.length - 1].main},</p>
+                                <p className='temp'>{Math.round(data.main.temp)}℃</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     )

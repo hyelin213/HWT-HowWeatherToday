@@ -39,7 +39,7 @@
   margin: 0 auto;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   position: relative;
   z-index: 1;
@@ -86,6 +86,7 @@
   overflow: scroll;
 }
 
+/* 검색창 */
 .container .weather-page .search-city {
   width: 100%;
   height: 70px;
@@ -112,6 +113,7 @@
   margin-left: 20px;
 }
 
+/* 오늘 날짜 및 시간 표시  */
 .container .weather-page .today-now {
   display: flex;
   align-items: center;
@@ -126,6 +128,8 @@
   background-color: #000;
 }
 
+/* Part 1 */
+/* 현재 기온 */
 .weather-page .current-weather .key-info .key-info-top .city-name {
   margin: 15px 0;
 }
@@ -157,7 +161,8 @@
 .weather-page .current-weather .key-info .key-info-bottom .key-info-bottom-right span {
   width: 15px;
   height: 2px;
-  margin: 0 5px;
+  margin: 0 7px;
+  margin-bottom: 3px;
   background-color: #000;
 }
 
@@ -206,7 +211,6 @@
 }
 
 /* 주간 기온 */
-
 .container .weather-page .weekly-weather {
   border-top: 1px solid #000;
   margin: 25px 0;
@@ -234,6 +238,53 @@
 .container .weather-page .weekly-weather .weekly-class .day-main {
   width: 70px;
   text-align: right;
+}
+
+/* Part 2 */
+/* 전국 날씨 */
+.container .weather-page .national-weather .title {
+  display: flex;
+  align-items: flex-end;
+  margin: 15px 0;
+}
+.container .weather-page .national-weather .title p {
+  font-size: 0.7rem;
+  margin-left: 10px;
+  opacity: 0.5;
+}
+
+.container .weather-page .national-weather .national-weather-container {
+  border: 1px solid #000;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weather-page .national-weather .national-class {
+  width: 208px;
+  height: 130px;
+  border-bottom: 1px solid #000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+}
+.weather-page .national-weather .national-class:nth-child(odd) {
+  border-right: 1px solid #000;
+}
+.weather-page .national-weather .national-class:last-child {
+  border: 0;
+}
+.weather-page .national-weather .national-class h3 {
+  font-size: 1rem;
+  width: 160px;
+}
+.weather-page .national-weather .national-class .regional-details {
+  display: flex;
+  margin-top: 7px;
+}
+.weather-page .national-weather .national-class .regional-details .temp {
+  margin-left: 5px;
 }
 
 .bg-color {
