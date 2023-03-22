@@ -15,7 +15,6 @@ export default function NationalWeather() {
             .then(res => {
                 const data = res.data.list;
                 setWeatherData(data);
-                console.log(data)
             })
     }, []);
 
