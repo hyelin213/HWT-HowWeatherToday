@@ -1,4 +1,5 @@
-import './App.css';
+import './style.css';
+import './style-Mobile.css';
 import WeatherProfile from './components/weatherProfile';
 
 function AppProfile() {

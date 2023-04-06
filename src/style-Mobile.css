@@ -1,0 +1,157 @@
+@charset 'utf-8';
+
+@media screen and (max-width: 480px) {
+
+    .container .weather-page .weather-page-container,
+    .container .weather-page .header {
+        width: 100vw;
+    }
+
+    /* 검색창 */
+    .container .weather-page .search-city {
+        width: 100%;
+        height: 14.58vw;
+    }
+
+    .container .weather-page .city-title {
+        width: 75vw;
+        font-size: 5vw;
+        padding: 0 3.33vw;
+    }
+    
+
+    .container .weather-page .search-btn {
+        margin-left: 0;
+    }
+    .container .weather-page .search-btn svg {
+        width: 2.7vw;
+        height: 2.7vw;
+    }
+
+    /* 오늘 날짜 및 시간 표시  */
+    .container .weather-page .today-now {
+        margin-top: 6.25vw;
+        font-size: 3.75vw;
+    }
+
+    .weather-page .current-weather .key-info .key-info-top .city-name {
+        margin: 3.125vw 0;
+        font-size: 5vw;
+    }
+
+    .weather-page .current-weather .key-info .key-info-top .current-temp {
+        font-size: 30vw;
+    }
+
+    .weather-page .current-weather .key-info .key-info-top .current-feel-like {
+        font-size: 3.33vw;
+    }
+
+    .weather-page .current-weather .key-info .key-info-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin: 5vw 0;
+    }
+
+    .weather-page .current-weather .key-info .key-info-bottom .current-main {
+        font-size: 10vw;
+        line-height: 10vw;
+        letter-spacing: -1.5px;
+    }
+
+    .weather-page .current-weather .key-info .key-info-bottom .key-info-bottom-right {
+        font-size: 3.33vw;
+    }
+
+    .weather-page .current-weather .key-info .key-info-bottom .key-info-bottom-right span {
+        width: 3vw;
+        height: 0.416vw;
+        margin: 0 1.458vw;
+        margin-bottom: 0.625vw;
+    }
+
+    .weather-page .current-weather .sub-info p {
+        font-size: 3.33vw;
+    }
+
+    .weather-page .current-weather .clothes-recomm {
+        font-size: 3.33vw;
+        margin-top: 5.208vw;
+    }
+
+    /* 시간 별 기온 */
+    .container .weather-page .hourly-weather {
+        border-top: 1px solid #000;
+        margin-top: 5.208vw;
+    }
+
+    .container .weather-page .hourly-weather h4 {
+        font-weight: bold;
+        font-size: 3.33vw;
+        margin: 5.208vw 0 3.125vw;
+    }
+
+    .container .weather-page .hourly-weather .hourly-class {
+        font-size: 3.33vw;
+    }
+
+    .container .weather-page .hourly-weather .hourly-class:not(:last-child) {
+        margin-bottom: 2.083vw;
+    }
+
+    /* 주간 별 기온 */
+    .container .weather-page .weekly-weather {
+        border-top: 1px solid #000;
+        margin-top: 5.208vw;
+    }
+
+    .container .weather-page .weekly-weather h4 {
+        font-weight: bold;
+        font-size: 3.33vw;
+        margin: 5.208vw 0 3.125vw;
+    }
+
+    .container .weather-page .weekly-weather .weekly-class {
+        font-size: 3.33vw;
+    }
+    
+    .container .weather-page .weekly-weather .weekly-class:not(:last-child) {
+        margin-bottom: 2.083vw;
+    }
+
+    /* Part 2 */
+    /* 전국 날씨 */
+    .container .weather-page .national-weather .title {
+        margin: 3.125vw 0;
+    }
+
+    .container .weather-page .national-weather .title h2 {
+        font-size: 5vw;
+    }
+    .container .weather-page .national-weather .title p {
+        font-size: 2.29vw;
+        margin-left: 2.08vw;
+    }
+
+    .weather-page .national-weather .national-class {
+        width: 50%;
+        height: 27.08vw;
+        font-size: 3.33vw;
+        padding-left: 4.16vw;
+    }
+
+    .weather-page .national-weather .national-class h3 {
+        font-size: 3.33vw;
+        width: 33.33vw;
+    }
+
+    .weather-page .national-weather .national-class .regional-details {
+        font-size: 3.33vw;
+        margin-top: 1.458vw;
+    }
+    .weather-page .national-weather .national-class .regional-details .temp {
+        margin-left: 1.04vw;
+    }
+
+}

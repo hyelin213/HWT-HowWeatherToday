@@ -1,5 +1,5 @@
 @charset 'utf-8';
-@import url(./AppFont.css);
+@import url(./Font.css);
 @import url(./Common.css);
 
 /* 검색 결과가 없을 때 */
@@ -35,7 +35,7 @@
 .container .weather-page {
   width: 480px;
   min-width: 320px;
-  height: 100%;
+  height: 100vh;
   margin: 0 auto;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
@@ -72,24 +72,25 @@
 
 /* contents */
 .container .weather-page .weather-page-container {
-  height: 100%;
+  height: 100vh;
   padding: 0 30px;
 }
 
 .container .weather-page .weather-slide {
-  height: 80vh;
+  height: 77vh;
+  overflow: scroll;
 }
 
 .container .weather-page .weather-page-first {
   width: 100%;
   height: 100%;
-  overflow: scroll;
 }
 
 /* 검색창 */
 .container .weather-page .search-city {
   width: 100%;
   height: 70px;
+  margin-top: 5px;
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #000;
@@ -210,7 +211,7 @@
   text-align: right;
 }
 
-/* 주간 기온 */
+/* 주간 별 기온 */
 .container .weather-page .weekly-weather {
   border-top: 1px solid #000;
   margin: 25px 0;

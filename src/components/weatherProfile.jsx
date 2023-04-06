@@ -7,7 +7,8 @@ import NationalWeather from './nationalWeather';
 import ClothesRecomm from './clothesRecomm';
 import ColorChange from './colorChange';
 
-import '../App.css';
+import '../style.css';
+import '../style-Mobile.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -157,6 +158,20 @@ export default function WeatherProfile() {
         setWeeklyWeather(getWeeklyWeather);
     }
 
+    function handleKeyDown(e) {
+        if(e.key === "Enter") {
+            e.preventDefault();
+
+            if(!city) {
+                return alert('지역을 입력해 주세요.');
+            }
+    
+            setCurrentWeather(getCurrentWeather);
+            setHourlyWeather(getHourlyWeather);
+            setWeeklyWeather(getWeeklyWeather);
+        }
+    }
+
     // 현재 날씨 함수
     function renderWeatherData() {
         if (!currentWeather) {
@@ -263,6 +278,7 @@ export default function WeatherProfile() {
                             type="text"
                             className='city-title'
                             onChange={handleChange}
+                            onKeyDown={handleKeyDown}
                         />
                         <button
                             type='button'

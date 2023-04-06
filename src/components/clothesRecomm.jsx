@@ -1,18 +1,22 @@
 export default function ClothesRecomm({temp}) {
     let message = '';
 
-    if(temp <= -10) {
-        message = '패딩, 두꺼운 코트, 목도리, 기모제품, 기타 겨울 의류';
-    } else if(temp <= 0) {
-        message = '두꺼운 코트, 히트텍, 기모제품, 기타 겨울 의류';
-    } else if(temp <= 9) {
-        message = '히트텍, 가죽자켓, 트렌치코트, 기모제품, 기타 겨울 의류';
-    } else if(temp <= 19) {
-        message = '가디건, 자켓, 야상, 맨투맨, 가벼운 니트';
-    } else if(temp <= 25) {
-        message = '얇은 가디건, 긴팔티, 면바지, 반바지, 청바지';
+    if(temp >= 28) {
+        message = '민소매, 반팔, 크롭, 반바지, 치마, 맨다리';
+    } else if(temp >= 24 && temp <= 27) {
+        message = '반팔, 얇은셔츠, 얇은 긴팔, 반바지, 맨다리';
+    } else if(temp >= 20 && temp <= 23) {
+        message = '얇은 니트, 가디건, 긴팔티, 후드티, 면바지, 슬랙스, 스키니';
+    } else if(temp >= 17 && temp <= 19) {
+        message = '니트, 가디건, 후드티, 맨투맨, 청바지, 면바지, 슬랙스, 원피스';
+    } else if(temp >= 11 && temp <= 16) {
+        message = '자켓, 셔츠, 가디건, 간절기 야상';
+    } else if(temp >= 6 && temp <= 10) {
+        message = '트렌치코트, 간절기 야상, 레이어드';
+    } else if(temp >= 0 && temp <= 5) {
+        message = '코트, 가죽자켓, 패딩, 니트, 레깅스';
     } else {
-        message = '반팔티, 반바지, 원피스, 린넨 소재 의류';
+        message = '두꺼운 코트, 패딩, 목도리, 기모제품';
     }
 
     return (
