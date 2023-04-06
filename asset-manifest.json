@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/HWT-HowWeatherToday/static/css/main.e0fb2c1c.css",
-    "main.js": "/HWT-HowWeatherToday/static/js/main.34cac653.js",
+    "main.css": "/HWT-HowWeatherToday/static/css/main.fc155e4d.css",
+    "main.js": "/HWT-HowWeatherToday/static/js/main.a128d803.js",
     "static/js/787.13d76ca7.chunk.js": "/HWT-HowWeatherToday/static/js/787.13d76ca7.chunk.js",
     "index.html": "/HWT-HowWeatherToday/index.html",
-    "main.e0fb2c1c.css.map": "/HWT-HowWeatherToday/static/css/main.e0fb2c1c.css.map",
-    "main.34cac653.js.map": "/HWT-HowWeatherToday/static/js/main.34cac653.js.map",
+    "main.fc155e4d.css.map": "/HWT-HowWeatherToday/static/css/main.fc155e4d.css.map",
+    "main.a128d803.js.map": "/HWT-HowWeatherToday/static/js/main.a128d803.js.map",
     "787.13d76ca7.chunk.js.map": "/HWT-HowWeatherToday/static/js/787.13d76ca7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0fb2c1c.css",
-    "static/js/main.34cac653.js"
+    "static/css/main.fc155e4d.css",
+    "static/js/main.a128d803.js"
   ]
 }
