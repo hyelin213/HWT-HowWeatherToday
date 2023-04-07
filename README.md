@@ -12,7 +12,7 @@
 <br/>
 
 ### :link:배포주소
-> [https://hyelin213.github.io/HWT-HowWeatherToday/](https://hyelin213.github.io/HWT-HowWeatherToday/)
+> <https://hyelin213.github.io/HWT-HowWeatherToday/>
 
 ### :watch:개발기간
 > 1인 제작<br/>
@@ -26,11 +26,18 @@
 ## :pushpin:주요기능
 #### 검색창
 - onClick, onKeyDown 이벤트에 함수를 선언하여 value 값에 따라 해당 도시의 날씨 정보 업데이트
-
+- 도시의 명칭이 정확하지 않은 경우, 결과 값이 null이 되어 정보가 없다는 화면 출력
+- 
 #### 현재날짜
 - moment.js를 사용하여 현재 접속한 날짜, 시간, 요일 출력
+- useEffect()내에서 setInterval로 지정된 시간마다 동작 실행
 
 #### API
 - openWeatherMap API 연동
-- 
+- axios를 사용해 get방식으로 Json 데이터 호출
+
 #### 화면 슬라이드
+- Swiper.js 라이브러리로 현재 위치의 날씨와 전국 날씨의 화면 슬라이드 전환
+
+#### 배경 색상 및 추천 옷차림
+- Json 객체의 온도 값을 반영하여 If문을 통해 지정된 색상 코드와 문자 출력
