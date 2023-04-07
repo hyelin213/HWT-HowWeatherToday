@@ -24,3 +24,13 @@
 <br/>
 
 ## :pushpin:주요기능
+#### 검색창
+- onClick, onKeyDown 이벤트에 함수를 선언하여 value 값에 따라 해당 도시의 날씨 정보 업데이트
+
+#### 현재날짜
+- moment.js를 사용하여 현재 접속한 날짜, 시간, 요일 출력
+
+#### API
+- openWeatherMap API 연동
+- 
+#### 화면 슬라이드
