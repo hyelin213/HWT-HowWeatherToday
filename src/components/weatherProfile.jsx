@@ -95,7 +95,7 @@ export default function WeatherProfile() {
                 setError(true);
                 setLoading(false);
             })
-        
+
         setLoading(false);
     }
 
@@ -151,28 +151,6 @@ export default function WeatherProfile() {
         requestCoords();
     }, []);
 
-    function handleChange(e) {
-        setCity(e.target.value);
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        if(!city) {
-            return alert('지역을 입력해 주세요.');
-        }
-
-        setCurrentWeather(getCurrentWeather);
-        setHourlyWeather(getHourlyWeather);
-        setWeeklyWeather(getWeeklyWeather);
-    }
-
-    function handleKeyDown(e) {
-        if(e.key === "Enter") {
-            handleSubmit(e);
-        }
-    }
-
     // 현재 날씨 함수
     function renderWeatherData() {
         return (
@@ -201,7 +179,7 @@ export default function WeatherProfile() {
                         <ClothesRecomm temp={currentTemp} />
                     </>
                 )
-            }
+                }
             </div>
         );
     }
@@ -240,7 +218,30 @@ export default function WeatherProfile() {
                 <p className='day-main'>{data.weather[data.weather.length - 1].main}</p>
             </div>
         ))
+    }
 
+    // 검색창
+    function handleChange(e) {
+        setCity(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        setError(false);
+        e.preventDefault();
+
+        if (!city) {
+            return alert('지역을 입력해 주세요.');
+        }
+
+        setCurrentWeather(getCurrentWeather);
+        setHourlyWeather(getHourlyWeather);
+        setWeeklyWeather(getWeeklyWeather);
+    }
+
+    function handleKeyDown(e) {
+        if (e.key === "Enter") {
+            handleSubmit(e);
+        }
     }
 
     // 현재 시간 실시간 반영 (moment.js)
@@ -288,19 +289,21 @@ export default function WeatherProfile() {
 
                     {loading ? (
                         <div className="loading">
-                            <h2>Please wait<br/>a moment🌞</h2>
+                            <h2>Please wait<br />a moment🌞</h2>
                         </div>
                     ) : (
                         <Swiper spaceBetween={50} slidesPerView={1} className='weather-slide'>
                             <SwiperSlide className='weather-page-first'>
-                                { 
+                                {
                                     error ? (
                                         <div className='nothing-info'>
                                             <h2>Sorry,</h2>
                                             <p>해당 도시에 대한 정보가 없습니다.</p>
                                             <span>There is no information about the city.</span>
                                         </div>
-                                    ) : (renderWeatherData())
+                                    ) : (
+                                        renderWeatherData()
+                                    )
                                 }
                                 {hourlyWeather &&
                                     <div className="hourly-weather">
@@ -319,12 +322,12 @@ export default function WeatherProfile() {
                                 <NationalWeather />
                             </SwiperSlide>
                         </Swiper>
-                    )} 
+                    )}
                 </div>
             </div>
             <ColorChange temp={currentTemp}></ColorChange>
         </div>
     );
 
-    
+
 }
