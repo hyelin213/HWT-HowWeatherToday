@@ -36,6 +36,9 @@ export default function WeatherProfile() {
     const [sunrise, setSunrise] = useState('');
     const [sunset, setSunset] = useState('');
 
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
     const apiKey = '919907ac8d8febcd146eacdbfef2f528';
 
     // 현재 위치 추출
@@ -58,6 +61,7 @@ export default function WeatherProfile() {
 
     // 현재 날씨 출력
     function getCurrentWeather(lat, lon) {
+        setLoading(true);
         let api = `http://api.openweathermap.org/data/2.5/weather?&lang=kr&units=metric&appid=${apiKey}`;
 
         if (city) {
@@ -72,6 +76,7 @@ export default function WeatherProfile() {
                 const data = res.data;
                 setCurrentWeather(data);
 
+                // 사용하지 않게 되었지만 정보를 위해 남겨두는 코드 -----------------------*
                 // 일출
                 const sunriseTime = new Date(data.sys.sunrise * 1000);
                 const sunrise = `${sunriseTime.getHours()}:${sunriseTime.getMinutes()}`;
@@ -81,13 +86,17 @@ export default function WeatherProfile() {
                 const sunsetTime = new Date(data.sys.sunset * 1000);
                 const sunset = `${sunsetTime.getHours()}:${sunsetTime.getMinutes()}`;
                 setSunset(sunset);
+                // --------------------------------------------------------------------*
 
                 const temp = Math.round(data.main.temp);
                 setCurrentTemp(temp);
             })
-            .catch(err => {
-                console.log(err);
+            .catch(() => {
+                setError(true);
+                setLoading(false);
             })
+        
+        setLoading(false);
     }
 
 
@@ -160,30 +169,12 @@ export default function WeatherProfile() {
 
     function handleKeyDown(e) {
         if(e.key === "Enter") {
-            e.preventDefault();
-
-            if(!city) {
-                return alert('지역을 입력해 주세요.');
-            }
-    
-            setCurrentWeather(getCurrentWeather);
-            setHourlyWeather(getHourlyWeather);
-            setWeeklyWeather(getWeeklyWeather);
+            handleSubmit(e);
         }
     }
 
     // 현재 날씨 함수
     function renderWeatherData() {
-        if (!currentWeather) {
-            return (
-                <div className='nothing-info'>
-                    <h2>Sorry,</h2>
-                    <p>해당 도시에 대한 정보가 없습니다.</p>
-                    <span>There is no information about the city.</span>
-                </div>
-            )
-        }
-
         return (
             <div className='current-weather'>
                 {currentWeather && (
@@ -209,7 +200,8 @@ export default function WeatherProfile() {
                         </div>
                         <ClothesRecomm temp={currentTemp} />
                     </>
-                )}
+                )
+            }
             </div>
         );
     }
@@ -294,22 +286,40 @@ export default function WeatherProfile() {
                         <div className='today-date'>{nowTime.format('YYYY/MM/DD HH:mm')}</div>
                     </div>
 
-                    <Swiper spaceBetween={50} slidesPerView={1} className='weather-slide'>
-                        <SwiperSlide className='weather-page-first'>
-                            {renderWeatherData()}
-                            <div className="hourly-weather">
-                                <h4>Hourly</h4>
-                                {renderHourlyWeatherData()}
-                            </div>
-                            <div className="weekly-weather">
-                                <h4>Weekly</h4>
-                                {renderWeeklyWeatherData()}
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className='weather-page-second'>
-                            <NationalWeather />
-                        </SwiperSlide>
-                    </Swiper>
+                    {loading ? (
+                        <div className="loading">
+                            <h2>Please wait<br/>a moment🌞</h2>
+                        </div>
+                    ) : (
+                        <Swiper spaceBetween={50} slidesPerView={1} className='weather-slide'>
+                            <SwiperSlide className='weather-page-first'>
+                                { 
+                                    error ? (
+                                        <div className='nothing-info'>
+                                            <h2>Sorry,</h2>
+                                            <p>해당 도시에 대한 정보가 없습니다.</p>
+                                            <span>There is no information about the city.</span>
+                                        </div>
+                                    ) : (renderWeatherData())
+                                }
+                                {hourlyWeather &&
+                                    <div className="hourly-weather">
+                                        <h4>Hourly</h4>
+                                        {renderHourlyWeatherData()}
+                                    </div>
+                                }
+                                {weeklyWeather &&
+                                    <div className="weekly-weather">
+                                        <h4>Weekly</h4>
+                                        {renderWeeklyWeatherData()}
+                                    </div>
+                                }
+                            </SwiperSlide>
+                            <SwiperSlide className='weather-page-second'>
+                                <NationalWeather />
+                            </SwiperSlide>
+                        </Swiper>
+                    )} 
                 </div>
             </div>
             <ColorChange temp={currentTemp}></ColorChange>

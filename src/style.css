@@ -2,8 +2,8 @@
 @import url(./Font.css);
 @import url(./Common.css);
 
-/* 검색 결과가 없을 때 */
-.nothing-info {
+/* 검색 결과가 없을 때 & Loading 화면 */
+.nothing-info, .loading {
   width: 100%;
   height: 80vh;
   display: flex;
@@ -21,6 +21,12 @@
 .nothing-info span {
   font-size: 13px;
   opacity: 0.5;
+}
+
+.loading h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.05rem;
 }
 
 /* 검색 결과가 있을 때 */
