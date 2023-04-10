@@ -120,6 +120,10 @@
   margin-left: 20px;
 }
 
+.container .weather-page .search-btn svg path {
+  fill: #000;
+}
+
 /* 오늘 날짜 및 시간 표시  */
 .container .weather-page .today-now {
   display: flex;
