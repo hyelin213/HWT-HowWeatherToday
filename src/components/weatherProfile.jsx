@@ -236,6 +236,7 @@ export default function WeatherProfile() {
         setCurrentWeather(getCurrentWeather);
         setHourlyWeather(getHourlyWeather);
         setWeeklyWeather(getWeeklyWeather);
+        setCity('');
     }
 
     function handleKeyDown(e) {
@@ -270,6 +271,7 @@ export default function WeatherProfile() {
                         <input
                             type="text"
                             className='city-title'
+                            value={city}
                             onChange={handleChange}
                             onKeyDown={handleKeyDown}
                         />
