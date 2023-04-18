@@ -36,6 +36,9 @@
 - openWeatherMap API 연동
 - axios를 사용해 get방식으로 Json 데이터 호출
 
+#### 현재 위치
+- geolocation 객체를 통해 Geolocation API를 사용하고, getCurrentPosition 메서드를 호출하여 사용자 위치 정보를 구함
+
 #### 화면 슬라이드
 - Swiper.js 라이브러리로 현재 위치의 날씨와 전국 날씨의 화면을 슬라이드로 전환
 
