@@ -2,9 +2,33 @@
 
 @media screen and (max-width: 480px) {
 
+    /* 검색 결과가 없을 때 & Loading 화면 */
+
+    .nothing-info h2 {
+        font-size: 16.6vw;
+    }
+
+    .nothing-info p {
+        font-size: 3.33vw;
+        margin-top: 6.66vw;
+    }
+
+    .nothing-info span {
+        font-size: 2.708vw;
+        opacity: 0.5;
+    }
+
+    .loading h2 {
+        font-size: 6.6vw;
+    }
+
     .container .weather-page .weather-page-container,
     .container .weather-page .header {
         width: 100vw;
+    }
+
+    .container .weather-page .header h1 {
+        font-size: 20px;
     }
 
     /* 검색창 */
@@ -18,14 +42,56 @@
         font-size: 5vw;
         padding: 0 3.33vw;
     }
-    
+
 
     .container .weather-page .search-btn {
         margin-left: 0;
     }
+
     .container .weather-page .search-btn svg {
         width: 2.7vw;
         height: 2.7vw;
+    }
+
+    /* Part 1 */
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            margin-top: 1.5rem;
+
+        }
+
+        100% {
+            opacity: 1;
+            margin-top: 0;
+        }
+    }
+
+    @keyframes fadeIn2 {
+        0% {
+            opacity: 0;
+            margin-top: 6.6vw;
+
+        }
+
+        100% {
+            opacity: 1;
+            margin-top: 5vw;
+        }
+    }
+
+    @keyframes fadeIn3 {
+        0% {
+            opacity: 0;
+            margin-top: 6.868vw;
+
+        }
+
+        100% {
+            opacity: 1;
+            margin-top: 5.208vw;
+        }
     }
 
     /* 오늘 날짜 및 시간 표시  */
@@ -115,7 +181,7 @@
     .container .weather-page .weekly-weather .weekly-class {
         font-size: 3.33vw;
     }
-    
+
     .container .weather-page .weekly-weather .weekly-class:not(:last-child) {
         margin-bottom: 2.083vw;
     }
@@ -129,6 +195,7 @@
     .container .weather-page .national-weather .title h2 {
         font-size: 5vw;
     }
+
     .container .weather-page .national-weather .title p {
         font-size: 2.29vw;
         margin-left: 2.08vw;
@@ -150,6 +217,7 @@
         font-size: 3.33vw;
         margin-top: 1.458vw;
     }
+
     .weather-page .national-weather .national-class .regional-details .temp {
         margin-left: 1.04vw;
     }

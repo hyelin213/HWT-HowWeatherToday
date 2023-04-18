@@ -3,7 +3,8 @@
 @import url(./Common.css);
 
 /* 검색 결과가 없을 때 & Loading 화면 */
-.nothing-info, .loading {
+.nothing-info,
+.loading {
   width: 100%;
   height: 80vh;
   display: flex;
@@ -15,9 +16,11 @@
 .nothing-info h2 {
   font-size: 5rem;
 }
+
 .nothing-info p {
   margin-top: 2rem;
 }
+
 .nothing-info span {
   font-size: 13px;
   opacity: 0.5;
@@ -63,15 +66,20 @@
   background-color: #000;
   color: #eee;
 }
+
 .container .weather-page .header h1 {
+  margin-bottom: -0.2rem;
   font-size: 20px;
 }
+
 .container .weather-page .header p {
   font-size: 12px;
 }
+
 .container .weather-page .header a {
   color: #eee;
 }
+
 .container .weather-page .header a:active {
   color: #aaa;
 }
@@ -141,6 +149,71 @@
 
 /* Part 1 */
 /* 현재 기온 */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    margin-top: 1.5rem;
+
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+@keyframes fadeIn2 {
+  0% {
+    opacity: 0;
+    margin-top: 2rem;
+
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 1.5rem;
+  }
+}
+
+@keyframes fadeIn3 {
+  0% {
+    opacity: 0;
+    margin-top: 33px;
+
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 25px;
+  }
+}
+
+.weather-page .current-weather .key-info .key-info-top {
+  animation: fadeIn .2s linear;
+}
+
+.weather-page .current-weather .key-info .key-info-bottom {
+  animation: fadeIn2 .2s linear;
+}
+
+.weather-page .current-weather .sub-info {
+  animation: fadeIn2 .3s linear;
+}
+
+.weather-page .current-weather .clothes-recomm {
+  animation: fadeIn3 .3s linear;
+}
+
+.container .weather-page .hourly-weather {
+  animation: fadeIn3 .4s linear;
+}
+
+.container .weather-page .weekly-weather {
+  animation: fadeIn3 .4s linear;
+}
+
+
 .weather-page .current-weather .key-info .key-info-top .city-name {
   margin: 15px 0;
 }
@@ -169,6 +242,7 @@
   display: flex;
   align-items: center;
 }
+
 .weather-page .current-weather .key-info .key-info-bottom .key-info-bottom-right span {
   width: 15px;
   height: 2px;
@@ -188,6 +262,7 @@
 .weather-page .current-weather .clothes-recomm {
   margin-top: 25px;
 }
+
 .weather-page .current-weather .clothes h4 {
   font-weight: bold;
 }
@@ -197,14 +272,17 @@
   border-top: 1px solid #000;
   margin-top: 25px;
 }
+
 .container .weather-page .hourly-weather h4 {
   font-weight: bold;
   margin: 25px 0 15px;
 }
+
 .container .weather-page .hourly-weather .hourly-class {
   display: flex;
   justify-content: space-between;
 }
+
 .container .weather-page .hourly-weather .hourly-class:not(:last-child) {
   margin-bottom: 10px;
 }
@@ -212,10 +290,12 @@
 .container .weather-page .hourly-weather .hourly-class .time {
   width: 40px;
 }
+
 .container .weather-page .hourly-weather .hourly-class .temp {
   width: 40px;
   text-align: center;
 }
+
 .container .weather-page .hourly-weather .hourly-class .day-main {
   width: 70px;
   text-align: right;
@@ -226,6 +306,7 @@
   border-top: 1px solid #000;
   margin: 25px 0;
 }
+
 .container .weather-page .weekly-weather h4 {
   font-weight: bold;
   margin: 25px 0 15px;
@@ -235,6 +316,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .container .weather-page .weekly-weather .weekly-class:not(:last-child) {
   margin-bottom: 10px;
 }
@@ -242,10 +324,12 @@
 .container .weather-page .weekly-weather .weekly-class .date {
   width: 40px;
 }
+
 .container .weather-page .weekly-weather .weekly-class .temp {
   width: 40px;
   text-align: center;
 }
+
 .container .weather-page .weekly-weather .weekly-class .day-main {
   width: 70px;
   text-align: right;
@@ -258,6 +342,7 @@
   align-items: flex-end;
   margin: 15px 0;
 }
+
 .container .weather-page .national-weather .title p {
   font-size: 0.7rem;
   margin-left: 10px;
@@ -280,20 +365,25 @@
   justify-content: center;
   padding-left: 20px;
 }
+
 .weather-page .national-weather .national-class:nth-child(odd) {
   border-right: 1px solid #000;
 }
+
 .weather-page .national-weather .national-class:last-child {
   border: 0;
 }
+
 .weather-page .national-weather .national-class h3 {
   font-size: 1rem;
   width: 160px;
 }
+
 .weather-page .national-weather .national-class .regional-details {
   display: flex;
   margin-top: 7px;
 }
+
 .weather-page .national-weather .national-class .regional-details .temp {
   margin-left: 5px;
 }
