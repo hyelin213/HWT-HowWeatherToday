@@ -30,7 +30,7 @@
 
 #### 현재날짜
 - moment.js를 사용하여 현재 접속한 날짜, 시간, 요일 출력
-- useEffect()내에서 setInterval로 지정된 시간마다 동작 실행
+- useEffect Hook 내에서 setInterval로 지정된 시간마다 동작 실행
 
 #### API
 - openWeatherMap API 연동
